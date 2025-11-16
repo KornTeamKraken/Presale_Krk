@@ -11,6 +11,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Rajdhani', 'Segoe UI', sans-serif;
             background: #0a0e1a;
@@ -25,7 +29,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at center, #1a1033 0%, #0a0e1a 100%);
+            background: 
+                linear-gradient(to bottom, rgba(10, 14, 26, 0.95) 0%, rgba(10, 14, 26, 0.85) 50%, rgba(10, 14, 26, 0.95) 100%),
+                url('https://i.imgur.com/KqB7X8M.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             z-index: -2;
         }
 
@@ -127,6 +136,7 @@
             -webkit-text-fill-color: transparent;
             letter-spacing: 3px;
             animation: glitch 3s ease-in-out infinite;
+            cursor: pointer;
         }
 
         .wallet-section {
@@ -180,6 +190,7 @@
             position: relative;
             text-transform: uppercase;
             letter-spacing: 1px;
+            cursor: pointer;
         }
 
         nav a::after {
@@ -209,6 +220,13 @@
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
+            background: 
+                linear-gradient(to bottom, rgba(10, 14, 26, 0.7) 0%, rgba(10, 14, 26, 0.9) 100%),
+                url('https://i.imgur.com/9xB2L3K.jpeg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
         .hero::before {
@@ -348,7 +366,12 @@
         }
 
         .presale-box {
-            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
+            background: 
+                linear-gradient(135deg, rgba(255, 0, 255, 0.15), rgba(0, 255, 255, 0.15)),
+                linear-gradient(to bottom, rgba(10, 14, 26, 0.95) 0%, rgba(10, 14, 26, 0.85) 100%),
+                url('https://i.imgur.com/7yH8K9L.jpeg');
+            background-size: cover;
+            background-position: center;
             border: 3px solid transparent;
             border-radius: 24px;
             padding: 50px;
@@ -537,9 +560,18 @@
             box-shadow: 0 10px 40px rgba(0, 255, 255, 0.6);
         }
 
+        .buy-button:active {
+            transform: translateY(-1px);
+        }
+
         /* Staking Box */
         .staking-box {
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+            background: 
+                linear-gradient(135deg, rgba(0, 255, 255, 0.15), rgba(255, 0, 255, 0.15)),
+                linear-gradient(to bottom, rgba(10, 14, 26, 0.95) 0%, rgba(10, 14, 26, 0.85) 100%),
+                url('https://i.imgur.com/2nJ4M6P.jpeg');
+            background-size: cover;
+            background-position: center;
         }
 
         .staking-options {
@@ -601,16 +633,37 @@
             padding: 100px 50px;
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(to bottom, rgba(10, 14, 26, 0.8) 0%, rgba(10, 14, 26, 0.7) 50%, rgba(10, 14, 26, 0.8) 100%),
+                url('https://i.imgur.com/xR5N2pL.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+            border-radius: 24px;
         }
 
         .feature-card {
-            background: linear-gradient(135deg, rgba(255, 0, 255, 0.05), rgba(0, 255, 255, 0.05));
+            background: 
+                linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1)),
+                rgba(10, 14, 26, 0.9);
             border: 2px solid rgba(255, 0, 255, 0.3);
             border-radius: 20px;
             padding: 40px;
             transition: all 0.4s;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
         .feature-card::before {
@@ -657,6 +710,14 @@
             max-width: 1400px;
             margin: 0 auto;
             text-align: center;
+            position: relative;
+            background: 
+                linear-gradient(to bottom, rgba(10, 14, 26, 0.85) 0%, rgba(10, 14, 26, 0.95) 100%),
+                url('https://i.imgur.com/pL9M5xK.jpeg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
         .tokenomics h2 {
@@ -767,6 +828,11 @@
                 gap: 20px;
             }
             
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
             .hero h1 {
                 font-size: 42px;
             }
@@ -777,6 +843,7 @@
             
             .features {
                 padding: 50px 20px;
+                grid-template-columns: 1fr;
             }
 
             .payment-methods {
@@ -786,6 +853,16 @@
             .countdown {
                 flex-wrap: wrap;
             }
+
+            .wallet-section {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .wallet-btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -794,12 +871,12 @@
     <div class="grid-overlay"></div>
 
     <header>
-        <div class="logo">🐙 KRAKEN</div>
+        <div class="logo" onclick="scrollToTop()">🐙 KRAKEN</div>
         <nav>
-            <a href="#presale">Prévente</a>
-            <a href="#staking">Staking</a>
-            <a href="#features">Gameplay</a>
-            <a href="#tokenomics">Tokenomics</a>
+            <a onclick="scrollToSection('presale')">Prévente</a>
+            <a onclick="scrollToSection('staking')">Staking</a>
+            <a onclick="scrollToSection('features')">Gameplay</a>
+            <a onclick="scrollToSection('tokenomics')">Tokenomics</a>
             <a href="https://kraken-city.fr" target="_blank">Kraken City</a>
         </nav>
         <div class="wallet-section">
@@ -874,4 +951,583 @@
 
             <h3 style="color: #9fb3d9; margin: 30px 0 15px; text-align: center;">Méthode de Paiement</h3>
             <div class="payment-methods">
-                <div class="payment-method selected" onclick="selectPayment('eth')
+                <div class="payment-method selected" onclick="selectPayment('eth')" id="pay-eth">
+                    🔷 ETH
+                </div>
+                <div class="payment-method" onclick="selectPayment('bnb')" id="pay-bnb">
+                    🟡 BNB
+                </div>
+                <div class="payment-method" onclick="selectPayment('usdt')" id="pay-usdt">
+                    💵 USDT
+                </div>
+                <div class="payment-method" onclick="selectPayment('usdc')" id="pay-usdc">
+                    🔵 USDC
+                </div>
+                <div class="payment-method" onclick="selectPayment('sol')" id="pay-sol">
+                    ⚡ SOL
+                </div>
+                <div class="payment-method" onclick="selectPayment('card')" id="pay-card">
+                    💳 Carte
+                </div>
+            </div>
+
+            <input type="number" class="buy-input" placeholder="Montant en USD" id="buyAmount" value="100">
+            
+            <div style="text-align: center; color: #9fb3d9; margin: 15px 0; font-size: 18px;">
+                Vous recevrez: <span id="tokenAmount" style="color: #00ffff; font-weight: bold; font-size: 24px;">800,000 KRK</span>
+            </div>
+
+            <button class="buy-button" onclick="buyTokens()">
+                <span style="position: relative; z-index: 1;">💎 ACHETER MAINTENANT</span>
+            </button>
+
+            <div style="margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.4); border-radius: 8px; border: 1px solid rgba(255,0,255,0.3);">
+                <small style="color: #9fb3d9;">
+                    🔐 Transaction sécurisée • Smart Contract audité • Tokens livrés instantanément
+                </small>
+            </div>
+        </div>
+
+        <div class="presale-box staking-box" id="staking">
+            <h2>🔥 Staking KRK</h2>
+            
+            <p style="text-align: center; color: #9fb3d9; margin-bottom: 30px;">
+                Stakez vos tokens et gagnez des récompenses passives
+            </p>
+
+            <div class="staking-options">
+                <div class="staking-option selected" onclick="selectStaking(30, 15)">
+                    <div class="staking-period">30 Jours</div>
+                    <div class="staking-apy">15% APY</div>
+                </div>
+                <div class="staking-option" onclick="selectStaking(90, 35)">
+                    <div class="staking-period">90 Jours</div>
+                    <div class="staking-apy">35% APY</div>
+                </div>
+                <div class="staking-option" onclick="selectStaking(180, 75)">
+                    <div class="staking-period">180 Jours</div>
+                    <div class="staking-apy">75% APY</div>
+                </div>
+            </div>
+
+            <input type="number" class="buy-input" placeholder="Montant KRK à staker" id="stakeAmount" value="10000">
+            
+            <div class="reward-display">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                    <span style="color: #9fb3d9;">Période:</span>
+                    <span style="color: #00ffff; font-weight: bold;" id="stakePeriod">30 Jours</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                    <span style="color: #9fb3d9;">APY:</span>
+                    <span style="color: #ff00ff; font-weight: bold;" id="stakeAPY">15%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span style="color: #9fb3d9;">Récompenses estimées:</span>
+                    <span style="color: #00ff00; font-weight: bold; font-size: 20px;" id="stakeReward">123.29 KRK</span>
+                </div>
+            </div>
+
+            <button class="buy-button" onclick="stakeTokens()" style="background: linear-gradient(135deg, #00ffff, #ff00ff);">
+                <span style="position: relative; z-index: 1;">🔒 STAKER MAINTENANT</span>
+            </button>
+
+            <div style="margin-top: 30px; padding: 20px; background: rgba(0,255,255,0.1); border-radius: 12px; border: 2px solid rgba(0,255,255,0.3);">
+                <h4 style="color: #00ffff; margin-bottom: 15px; text-align: center;">📊 Vos Stats de Staking</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <div style="color: #9fb3d9; font-size: 12px;">Total Staké</div>
+                        <div style="color: #fff; font-weight: bold; font-size: 18px;">0 KRK</div>
+                    </div>
+                    <div>
+                        <div style="color: #9fb3d9; font-size: 12px;">Récompenses Gagnées</div>
+                        <div style="color: #00ff00; font-weight: bold; font-size: 18px;">0 KRK</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="features" class="features">
+        <div class="feature-card">
+            <div class="feature-icon">⛏️</div>
+            <h3>Minage Mobile</h3>
+            <p>Minez des tokens KRAKEN directement depuis votre smartphone. Système de minage innovant basé sur le gameplay. Gagnez des KRK en jouant, en explorant et en combattant.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🎴</div>
+            <h3>Cartes NFT Cyber</h3>
+            <p>Collectionnez des créatures bio-mécaniques uniques. 4 raretés + Ultra Rare Gold Kraken. Chaque carte a ses propres stats et capacités pour les combats PVP et PVE.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">⚔️</div>
+            <h3>Combat PVP/PVE</h3>
+            <p>Affrontez d'autres joueurs en arène ou explorez des donjons cyberpunk. Système de combat stratégique avec combos et évolutions. Grimpez dans le classement mondial.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🌀</div>
+            <h3>Portails Adventures</h3>
+            <p>Explorez des dimensions parallèles remplies de boss légendaires. Découvrez des loots rares et des matériaux précieux. Chaque portail est une aventure unique.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">💰</div>
+            <h3>Play-to-Earn</h3>
+            <p>Gagnez des tokens en jouant réellement. Système économique équilibré anti-inflation. Vendez vos NFT sur le marketplace intégré. Récompenses quotidiennes et événements.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🏙️</div>
+            <h3>Kraken City</h3>
+            <p>Explorez une mégacité cyberpunk vivante et évolutive. Zones industrielles, quartiers néon, serveurs de données. Un univers manga ultra-détaillé qui évolue avec la communauté.</p>
+        </div>
+    </section>
+
+    <section id="tokenomics" class="tokenomics">
+        <h2>Tokenomics</h2>
+        <p style="color: #9fb3d9; font-size: 20px; margin-bottom: 50px;">
+            Supply Total: 1,000,000,000 KRK
+        </p>
+
+        <div class="tokenomics-grid">
+            <div class="token-card">
+                <div class="token-percentage">30%</div>
+                <div class="token-label">Prévente</div>
+                <p style="color: #9fb3d9; margin-top: 10px;">300M tokens pour financer le développement</p>
+            </div>
+
+            <div class="token-card">
+                <div class="token-percentage">20%</div>
+                <div class="token-label">Listing CEX/DEX</div>
+                <p style="color: #9fb3d9; margin-top: 10px;">200M pour liquidité et listings</p>
+            </div>
+
+            <div class="token-card">
+                <div class="token-percentage">20%</div>
+                <div class="token-label">Récompenses Joueurs</div>
+                <p style="color: #9fb3d9; margin-top: 10px;">200M distribués via play-to-earn</p>
+            </div>
+
+            <div class="token-card">
+                <div class="token-percentage">20%</div>
+                <div class="token-label">Développement</div>
+                <p style="color: #9fb3d9; margin-top: 10px;">200M pour développement & marketing</p>
+            </div>
+
+            <div class="token-card">
+                <div class="token-percentage">10%</div>
+                <div class="token-label">Team</div>
+                <p style="color: #9fb3d9; margin-top: 10px;">100M vesting 24 mois pour l'équipe</p>
+            </div>
+
+            <div class="token-card">
+                <div class="token-percentage">✓</div>
+                <div class="token-label">Audit Sécurisé</div>
+                <p style="color: #9fb3d9; margin-top: 10px;">Smart contract audité par Certik</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Rejoignez la Révolution</h2>
+        <p style="color: #9fb3d9; font-size: 20px; margin-bottom: 40px;">
+            Téléchargez le jeu et commencez à miner dès maintenant
+        </p>
+        
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <button class="buy-button" style="width: auto; padding: 20px 50px;" onclick="window.open('#', '_blank')">
+                <span style="position: relative; z-index: 1;">📱 iOS App Store</span>
+            </button>
+            <button class="buy-button" style="width: auto; padding: 20px 50px; background: linear-gradient(135deg, #00ffff, #ff00ff);" onclick="window.open('#', '_blank')">
+                <span style="position: relative; z-index: 1;">🤖 Google Play</span>
+            </button>
+        </div>
+
+        <div style="margin-top: 60px; padding: 40px; background: rgba(0,0,0,0.4); border-radius: 20px; max-width: 800px; margin-left: auto; margin-right: auto; border: 2px solid rgba(255,0,255,0.3);">
+            <h3 style="color: #00ffff; margin-bottom: 20px;">🎮 Bêta Fermée Disponible</h3>
+            <p style="color: #9fb3d9; margin-bottom: 20px;">
+                Accès anticipé pour les premiers 1000 investisseurs !<br>
+                Minez maintenant et gagnez des bonus exclusifs.
+            </p>
+            <button class="buy-button" style="width: auto; padding: 15px 40px; font-size: 18px;" onclick="alert('🎁 Lien de téléchargement envoyé par email après achat!')">
+                <span style="position: relative; z-index: 1;">🎁 Obtenir l'Accès Bêta</span>
+            </button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo" style="margin-bottom: 20px; font-size: 48px;">🐙 KRAKEN</div>
+        <p style="color: #9fb3d9; margin-bottom: 20px; font-size: 18px;">
+            The Future of Crypto Gaming is Here
+        </p>
+        
+        <div class="social-links">
+            <a href="#" title="Twitter">𝕏</a>
+            <a href="#" title="Discord">💬</a>
+            <a href="#" title="Telegram">✈️</a>
+            <a href="https://kraken-city.fr" title="Website">🌐</a>
+            <a href="mailto:krakenproject.contact@gmail.com" title="Email">✉️</a>
+        </div>
+
+        <div style="margin-top: 40px; padding: 20px; background: rgba(255,0,255,0.1); border-radius: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <p style="color: #ff00ff; font-size: 14px; margin-bottom: 10px;">
+                📧 Contact: krakenproject.contact@gmail.com
+            </p>
+            <p style="color: #00ffff; font-size: 14px;">
+                🌐 Website: kraken-city.fr
+            </p>
+        </div>
+
+        <p style="margin-top: 30px; color: #666; font-size: 12px;">
+            © 2025 Kraken Protocol. Tous droits réservés.<br>
+            Investir comporte des risques. DYOR (Do Your Own Research)
+        </p>
+    </footer>
+
+    <script>
+        // ==================== VARIABLES GLOBALES ====================
+        let connectedWallet = null;
+        let walletAddress = null;
+        let selectedPaymentMethod = 'eth';
+        let selectedStakingPeriod = 30;
+        let selectedStakingAPY = 15;
+
+        // ==================== NAVIGATION ====================
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==================== WALLET CONNECTION ====================
+        async function connectMetamask() {
+            console.log('🦊 Tentative de connexion Metamask...');
+            
+            try {
+                if (typeof window.ethereum !== 'undefined') {
+                    console.log('✓ Metamask détecté');
+                    
+                    const accounts = await window.ethereum.request({ 
+                        method: 'eth_requestAccounts' 
+                    });
+                    
+                    if (accounts && accounts.length > 0) {
+                        walletAddress = accounts[0];
+                        connectedWallet = 'metamask';
+                        updateWalletUI();
+                        
+                        alert('✅ Metamask connecté avec succès!\n\n' +
+                              'Adresse: ' + walletAddress.substring(0, 10) + '...' + walletAddress.substring(38) + '\n\n' +
+                              'Vous pouvez maintenant acheter des tokens KRK!');
+                    }
+                } else {
+                    const install = confirm('⚠️ Metamask n\'est pas installé!\n\n' +
+                                          'Metamask est requis pour acheter des tokens.\n\n' +
+                                          'Voulez-vous installer Metamask maintenant?');
+                    if (install) {
+                        window.open('https://metamask.io/download/', '_blank');
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Erreur:', error);
+                
+                if (error.code === 4001) {
+                    alert('❌ Connexion refusée\n\nVous avez annulé la connexion dans Metamask.');
+                } else {
+                    alert('❌ Erreur de connexion\n\n' + error.message);
+                }
+            }
+        }
+
+        async function connectPhantom() {
+            console.log('👻 Tentative de connexion Phantom...');
+            
+            try {
+                if (typeof window.solana !== 'undefined' && window.solana.isPhantom) {
+                    console.log('✓ Phantom détecté');
+                    
+                    const resp = await window.solana.connect();
+                    
+                    if (resp && resp.publicKey) {
+                        walletAddress = resp.publicKey.toString();
+                        connectedWallet = 'phantom';
+                        updateWalletUI();
+                        
+                        alert('✅ Phantom connecté avec succès!\n\n' +
+                              'Adresse: ' + walletAddress.substring(0, 10) + '...' + walletAddress.substring(38) + '\n\n' +
+                              'Vous pouvez maintenant acheter des tokens KRK!');
+                    }
+                } else {
+                    const install = confirm('⚠️ Phantom n\'est pas installé!\n\n' +
+                                          'Phantom est requis pour les transactions Solana.\n\n' +
+                                          'Voulez-vous installer Phantom maintenant?');
+                    if (install) {
+                        window.open('https://phantom.app/', '_blank');
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Erreur:', error);
+                
+                if (error.code === 4001) {
+                    alert('❌ Connexion refusée\n\nVous avez annulé la connexion dans Phantom.');
+                } else {
+                    alert('❌ Erreur de connexion\n\n' + error.message);
+                }
+            }
+        }
+
+        function updateWalletUI() {
+            const walletStatus = document.getElementById('walletStatus');
+            if (walletAddress && connectedWallet) {
+                const shortAddress = walletAddress.substring(0, 6) + '...' + walletAddress.substring(38);
+                const icon = connectedWallet === 'metamask' ? '🦊' : '👻';
+                walletStatus.innerHTML = `<div class="wallet-connected">${icon} ${shortAddress}</div>`;
+            }
+        }
+
+        // ==================== PAYMENT METHODS ====================
+        function selectPayment(method) {
+            selectedPaymentMethod = method;
+            
+            // Retirer la classe selected de tous
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Ajouter la classe selected au bouton cliqué
+            const selectedElement = document.getElementById('pay-' + method);
+            if (selectedElement) {
+                selectedElement.classList.add('selected');
+            }
+            
+            console.log('Méthode de paiement sélectionnée:', method);
+        }
+
+        // ==================== TOKEN PURCHASE ====================
+        function updateTokenAmount() {
+            const usdInput = document.getElementById('buyAmount');
+            const tokenDisplay = document.getElementById('tokenAmount');
+            
+            if (usdInput && tokenDisplay) {
+                const usd = parseFloat(usdInput.value) || 0;
+                const price = 0.000125;
+                const tokens = Math.floor(usd / price);
+                tokenDisplay.textContent = tokens.toLocaleString() + ' KRK';
+            }
+        }
+
+        async function buyTokens() {
+            const amountInput = document.getElementById('buyAmount');
+            const amount = parseFloat(amountInput.value);
+            
+            console.log('Tentative d\'achat:', amount, 'USD');
+            
+            if (!amount || amount < 10) {
+                alert('❌ Montant invalide\n\nLe montant minimum est de $10 USD');
+                return;
+            }
+
+            if (!connectedWallet || !walletAddress) {
+                alert('⚠️ Wallet non connecté\n\nVeuillez connecter votre wallet Metamask ou Phantom avant d\'acheter.');
+                return;
+            }
+
+            const tokens = Math.floor(amount / 0.000125);
+            const methodNames = {
+                'eth': 'Ethereum (ETH)',
+                'bnb': 'Binance Coin (BNB)',
+                'usdt': 'Tether (USDT)',
+                'usdc': 'USD Coin (USDC)',
+                'sol': 'Solana (SOL)',
+                'card': 'Carte Bancaire'
+            };
+            
+            const confirm = window.confirm(
+                '🚀 CONFIRMER L\'ACHAT\n\n' +
+                '💰 Montant:  + amount.toFixed(2) + '\n' +
+                '🪙 Tokens: ' + tokens.toLocaleString() + ' KRK\n' +
+                '💳 Méthode: ' + methodNames[selectedPaymentMethod] + '\n' +
+                '👛 Wallet: ' + connectedWallet + '\n\n' +
+                'Voulez-vous continuer?'
+            );
+            
+            if (confirm) {
+                alert('⏳ Transaction en cours...\n\nVeuillez confirmer la transaction dans votre wallet.');
+                
+                // Simulation de transaction
+                setTimeout(() => {
+                    alert('✅ ACHAT RÉUSSI!\n\n' +
+                          '🎉 ' + tokens.toLocaleString() + ' KRK ajoutés à votre wallet\n' +
+                          '📝 TxHash: 0x' + Math.random().toString(36).substring(2, 15) + '...\n\n' +
+                          'Merci pour votre confiance!');
+                }, 2000);
+            }
+        }
+
+        // ==================== STAKING ====================
+        function selectStaking(period, apy) {
+            selectedStakingPeriod = period;
+            selectedStakingAPY = apy;
+            
+            // Retirer selected de tous
+            document.querySelectorAll('.staking-option').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Ajouter selected au bouton cliqué
+            event.currentTarget.classList.add('selected');
+            
+            // Mettre à jour l'affichage
+            document.getElementById('stakePeriod').textContent = period + ' Jours';
+            document.getElementById('stakeAPY').textContent = apy + '%';
+            
+            updateStakingReward();
+        }
+
+        function updateStakingReward() {
+            const amountInput = document.getElementById('stakeAmount');
+            const rewardDisplay = document.getElementById('stakeReward');
+            
+            if (amountInput && rewardDisplay) {
+                const amount = parseFloat(amountInput.value) || 0;
+                const reward = (amount * selectedStakingAPY / 100) * (selectedStakingPeriod / 365);
+                rewardDisplay.textContent = reward.toFixed(2) + ' KRK';
+            }
+        }
+
+        async function stakeTokens() {
+            const amountInput = document.getElementById('stakeAmount');
+            const amount = parseFloat(amountInput.value);
+            
+            if (!amount || amount < 1000) {
+                alert('❌ Montant invalide\n\nLe montant minimum de staking est de 1,000 KRK');
+                return;
+            }
+
+            if (!connectedWallet || !walletAddress) {
+                alert('⚠️ Wallet non connecté\n\nVeuillez connecter votre wallet avant de staker.');
+                return;
+            }
+
+            const reward = (amount * selectedStakingAPY / 100) * (selectedStakingPeriod / 365);
+            const unlockDate = new Date(Date.now() + selectedStakingPeriod * 24 * 60 * 60 * 1000);
+            
+            const confirm = window.confirm(
+                '🔒 CONFIRMER LE STAKING\n\n' +
+                '💰 Montant: ' + amount.toLocaleString() + ' KRK\n' +
+                '⏱️ Période: ' + selectedStakingPeriod + ' jours\n' +
+                '📈 APY: ' + selectedStakingAPY + '%\n' +
+                '🎁 Récompenses: ' + reward.toFixed(2) + ' KRK\n' +
+                '🔓 Déblocage: ' + unlockDate.toLocaleDateString('fr-FR') + '\n\n' +
+                'Voulez-vous continuer?'
+            );
+            
+            if (confirm) {
+                alert('⏳ Transaction en cours...\n\nVeuillez confirmer dans votre wallet.');
+                
+                setTimeout(() => {
+                    alert('✅ STAKING ACTIVÉ!\n\n' +
+                          '🎉 ' + amount.toLocaleString() + ' KRK stakés avec succès\n' +
+                          '📅 Déblocage: ' + unlockDate.toLocaleDateString('fr-FR') + '\n' +
+                          '💎 Récompenses: ' + reward.toFixed(2) + ' KRK\n\n' +
+                          'Vos tokens génèrent maintenant des récompenses!');
+                }, 2000);
+            }
+        }
+
+        // ==================== COUNTDOWN TIMER ====================
+        function updateCountdown() {
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 12);
+            endDate.setHours(endDate.getHours() + 8);
+            
+            setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                const daysEl = document.getElementById('days');
+                const hoursEl = document.getElementById('hours');
+                const minutesEl = document.getElementById('minutes');
+                const secondsEl = document.getElementById('seconds');
+
+                if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
+                if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+                if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+                if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+            }, 1000);
+        }
+
+        // ==================== PARTICLES ====================
+        function createParticles() {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animation = `float ${3 + Math.random() * 4}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(particle);
+            }
+        }
+
+        // ==================== PARTICIPANTS COUNTER ====================
+        function updateParticipants() {
+            setInterval(() => {
+                const participantsEl = document.getElementById('participants');
+                if (participantsEl) {
+                    const current = parseInt(participantsEl.textContent.replace(',', ''));
+                    const newValue = current + Math.floor(Math.random() * 3);
+                    participantsEl.textContent = newValue.toLocaleString();
+                }
+            }, 5000);
+        }
+
+        // ==================== INIT ====================
+        window.addEventListener('load', () => {
+            console.log('🚀 Site chargé');
+            
+            // Animer la barre de progression
+            setTimeout(() => {
+                const progressFill = document.querySelector('.progress-fill');
+                if (progressFill) {
+                    progressFill.style.width = '6.35%';
+                }
+            }, 500);
+            
+            // Créer les particules
+            createParticles();
+            
+            // Démarrer le compteur
+            updateCountdown();
+            
+            // Mettre à jour les participants
+            updateParticipants();
+            
+            // Event listeners
+            const buyAmountInput = document.getElementById('buyAmount');
+            if (buyAmountInput) {
+                buyAmountInput.addEventListener('input', updateTokenAmount);
+            }
+            
+            const stakeAmountInput = document.getElementById('stakeAmount');
+            if (stakeAmountInput) {
+                stakeAmountInput.addEventListener('input', updateStakingReward);
+            }
+            
+            console.log('✅ Toutes les fonctions initialisées');
+        });
+    </script>
+</body>
+</html>
