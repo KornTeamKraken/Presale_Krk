@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRAKEN TOKEN - Prévente Officielle | Cyberpunk Mining Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+            background: #0a0e1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10, 14, 26, 0.95) 0%, rgba(10, 14, 26, 0.85) 50%, rgba(10, 14, 26, 0.95) 100%);
+            z-index: -2;
+        }
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 0, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridScroll 20s linear infinite;
+        }
+        @keyframes gridScroll {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        .particle {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: rgba(0, 255, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+            25% { text-shadow: -2px 2px #ff00ff, 2px -2px #00ffff; }
+            50% { text-shadow: 2px -2px #ff00ff, -2px 2px #00ffff; }
+            75% { text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff; }
+            100% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+        }
+        @keyframes neonPulse {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(255, 0, 255, 0.5),
+                            0 0 10px rgba(255, 0, 255, 0.5),
+                            0 0 20px rgba(255, 0, 255, 0.3),
+                            inset 0 0 10px rgba(255, 0, 255, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 10px rgba(0, 255, 255, 0.8),
+                            0 0 20px rgba(0, 255, 255, 0.6),
+                            0 0 30px rgba(0, 255, 255, 0.4),
+                            inset 0 0 15px rgba(0, 255, 255, 0.3);
+            }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(2deg); }
+            66% { transform: translateY(10px) rotate(-2deg); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        header {
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+            border-image-slice: 1;
+        }
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff00ff, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 3px;
+            animation: glitch 3s ease-in-out infinite;
+            cursor: pointer;
+        }
+        .wallet-section {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .wallet-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
+            border: 2px solid #ff00ff;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .wallet-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.4), rgba(0, 255, 255, 0.4));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 0, 255, 0.5);
+        }
+        .wallet-connected {
+            padding: 12px 20px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            transition: width 0.3s;
+        }
+        nav a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        .hero {
+            padding: 150px 50px 100px;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            background:
+                linear-gradient(to bottom, rgba(10, 14, 26, 0.7) 0%, rgba(10, 14, 26, 0.9) 100%),
+                url('https://i.imgur.com/9xB2L3K.jpeg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            background-image: url('https://mistralaichatupprodswe.blob.core.windows.net/chat-images/da/c8/8e/dac88e67-9eb0-4d3e-9a3b-e2778165d204/bffc8a7d-7887-4943-800d-4410dc1d55f3/99ecb238-98eb-42c6-9404-f7120783cf86?sv=2025-01-05&st=2025-11-16T03%3A39%3A26Z&se=2025-11-16T04%3A39%3A26Z&sr=b&sp=rade&sig=muKil3nlc0JBc9zwTl%2FFRZ2z9Df3K%2BPNmzXKxBiDv0k%3D');
+        }
+        .hero::before {
+            content: '🐙';
+            position: absolute;
+            font-size: 600px;
+            opacity: 0.03;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: float 8s ease-in-out infinite;
+        }
+        .hero h1 {
+            font-size: 96px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff00ff, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideInLeft 1s ease-out;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        .hero .glitch-text {
+            animation: glitch 2s ease-in-out infinite;
+        }
+        .hero .subtitle {
+            font-size: 28px;
+            color: #9fb3d9;
+            margin-bottom: 40px;
+            animation: slideInRight 1.2s ease-out;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .cyber-line {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff00ff, #00ffff, #ff00ff, transparent);
+            margin: 40px 0;
+            animation: neonPulse 2s ease-in-out infinite;
+        }
+        .presale-stats-bar {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
+            border: 2px solid rgba(255, 0, 255, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 50px auto;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            animation: neonPulse 3s ease-in-out infinite;
+        }
+        .stat-box {
+            text-align: center;
+            position: relative;
+        }
+        .stat-box::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 60%;
+            background: linear-gradient(180deg, transparent, #ff00ff, transparent);
+        }
+        .stat-box:last-child::after {
+            display: none;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #9fb3d9;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .stat-value {
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .countdown {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        .countdown-item {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
+            border: 2px solid #ff00ff;
+            padding: 30px;
+            border-radius: 16px;
+            min-width: 120px;
+            animation: neonPulse 2s ease-in-out infinite;
+        }
+        .countdown-value {
+            font-size: 48px;
+            font-weight: 900;
+            color: #00ffff;
+            text-shadow: 0 0 20px #00ffff;
+        }
+        .countdown-label {
+            font-size: 14px;
+            color: #ff00ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+        .presale-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .presale-box {
+            background:
+                linear-gradient(135deg, rgba(255, 0, 255, 0.15), rgba(0, 255, 255, 0.15)),
+                linear-gradient(to bottom, rgba(10, 14, 26, 0.95) 0%, rgba(10, 14, 26, 0.85) 100%),
+                url('https://mistralaichatupprodswe.blob.core.windows.net/chat-images/da/c8/8e/dac88e67-9eb0-4d3e-9a3b-e2778165d204/bffc8a7d-7887-4943-800d-4410dc1d55f3/0bf10193-60c3-44a4-990a-842bd0cb668f?sv=2025-01-05&st=2025-11-16T03%3A39%3A26Z&se=2025-11-16T04%3A39%3A26Z&sr=b&sp=rade&sig=m93rwHOh5V3BV5hPgSYIa%2B3jMEfDp1oEzbN4y11QkCY%3D');
+            background-size: cover;
+            background-position: center;
+            border: 3px solid transparent;
+            border-radius: 24px;
+            padding: 50px;
+            backdrop-filter: blur(20px);
+            animation: neonPulse 3s ease-in-out infinite, float 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        .presale-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+            border-radius: 24px;
+            z-index: -1;
+            animation: rotate 3s linear infinite;
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .presale-box h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+        .progress-section {
+            margin: 30px 0;
+        }
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid rgba(255, 0, 255, 0.5);
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+            width: 6.35%;
+            transition: width 2s ease-out;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 900;
+            font-size: 16px;
+            text-shadow: 0 0 10px #000;
+        }
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .payment-method {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 0, 255, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .payment-method:hover {
+            border-color: #00ffff;
+            background: rgba(0, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.3);
+        }
+        .payment-method.selected {
+            border-color: #00ffff;
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        .buy-input {
+            width: 100%;
+            padding: 20px;
+            font-size: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(255, 0, 255, 0.5);
+            border-radius: 12px;
+            color: #fff;
+            margin: 20px 0;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        .buy-input:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        .buy-button {
+            width: 100%;
+            padding: 24px;
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            border: none;
+            border-radius: 12px;
+            color: #000;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+        }
+        .buy-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .buy-button:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+        .buy-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.6);
+        }
+        .buy-button:active {
+            transform: translateY(-1px);
+        }
+        .staking-box {
+            background:
+                linear-gradient(135deg, rgba(0, 255, 255, 0.15), rgba(255, 0, 255, 0.15)),
+                linear-gradient(to bottom, rgba(10, 14, 26, 0.95) 0%, rgba(10, 14, 26, 0.85) 100%),
+                url('https://mistralaichatupprodswe.blob.core.windows.net/chat-images/da/c8/8e/dac88e67-9eb0-4d3e-9a3b-e2778165d204/bffc8a7d-7887-4943-800d-4410dc1d55f3/23a19f1d-50ab-4fbe-b1fd-c1451ee997d6?sv=2025-01-05&st=2025-11-16T03%3A39%3A26Z&se=2025-11-16T04%3A39%3A26Z&sr=b&sp=rade&sig=ewAhhjW%2F6xe6XZ3Frl3ZbSI0%2Bjpfo6f6L2thtECf2xE%3D');
+            background-size: cover;
+            background-position: center;
+        }
+        .staking-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .staking-option {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .staking-option:hover {
+            border-color: #ff00ff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.4);
+        }
+        .staking-option.selected {
+            border-color: #ff00ff;
+            background: rgba(255, 0, 255, 0.2);
+        }
+        .staking-period {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ffff;
+            margin-bottom: 10px;
+        }
+        .staking-apy {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .reward-display {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            background:
+                linear-gradient(to bottom, rgba(10, 14, 26, 0.8) 0%, rgba(10, 14, 26, 0.7) 50%, rgba(10, 14, 26, 0.8) 100%),
+                url('https://mistralaichatupprodswe.blob.core.windows.net/chat-images/da/c8/8e/dac88e67-9eb0-4d3e-9a3b-e2778165d204/bffc8a7d-7887-4943-800d-4410dc1d55f3/ade7a150-8c4a-4fd5-a911-42f532309e7a?sv=2025-01-05&st=2025-11-16T03%3A39%3A26Z&se=2025-11-16T04%3A39%3A26Z&sr=b&sp=rade&sig=PzpuAN82n6yg0yenq3Lk02FPVTacpRxQ0YW8%2BvQzkXQ%3D');
+            background-size: cover;
+            background-position: center;
+        }
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 14, 26, 0.8);
+            z-index: -1;
+            border-radius: 24px;
+        }
+        .feature-card {
+            background:
+                linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1)),
+                rgba(10, 14, 26, 0.9);
+            border: 2px solid rgba(255, 0, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #00ffff;
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.4);
+        }
+        .feature-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.8));
+        }
+        .feature-card h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+        .feature-card p {
+            color: #9fb3d9;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        .tokenomics {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            background:
+                linear-gradient(to bottom, rgba(10, 14, 26, 0.85) 0%, rgba(10, 14, 26, 0.95) 100%),
+                url('https://mistralaichatupprodswe.blob.core.windows.net/chat-images/da/c8/8e/dac88e67-9eb0-4d3e-9a3b-e2778165d204/bffc8a7d-7887-4943-800d-4410dc1d55f3/3e7e5c1a-9de1-421d-943c-debf3b1206da?sv=2025-01-05&st=2025-11-16T03%3A39%3A26Z&se=2025-11-16T04%3A39%3A26Z&sr=b&sp=rade&sig=82s1eJTnNnozKYFR5EmHM4IHPrrBCj7iHfX30L9sGp8%3D');
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        .tokenomics h2 {
+            font-size: 64px;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .token-card {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
+            border: 2px solid rgba(255, 0, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: left;
+        }
+        .token-percentage {
+            font-size: 48px;
+            font-weight: 900;
+            color: #00ffff;
+            margin-bottom: 10px;
+        }
+        .token-label {
+            font-size: 20px;
+            color: #ff00ff;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .cta-section {
+            padding: 100px 50px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
+        }
+        .cta-section h2 {
+            font-size: 64px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        footer {
+            padding: 50px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 2px solid rgba(255, 0, 255, 0.3);
+        }
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
+            border: 2px solid #ff00ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00ffff;
+            text-decoration: none;
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+        .social-links a:hover {
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            transform: scale(1.2) rotate(360deg);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+        @media (max-width: 1024px) {
+            .presale-container {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 56px;
+            }
+            .tokenomics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 42px;
+            }
+            .presale-box {
+                padding: 30px 20px;
+            }
+            .features {
+                padding: 50px 20px;
+                grid-template-columns: 1fr;
+            }
+            .payment-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .countdown {
+                flex-wrap: wrap;
+            }
+            .wallet-section {
+                flex-direction: column;
+                width: 100%;
+            }
+            .wallet-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="grid-overlay"></div>
+    <header>
+        <div class="logo" onclick="scrollToTop()">🐙 KRAKEN</div>
+        <nav>
+            <a onclick="scrollToSection('presale')">Prévente</a>
+            <a onclick="scrollToSection('staking')">Staking</a>
+            <a onclick="scrollToSection('features')">Gameplay</a>
+            <a onclick="scrollToSection('tokenomics')">Tokenomics</a>
+            <a href="https://kraken-city.fr" target="_blank">Kraken City</a>
+        </nav>
+        <div class="wallet-section">
+            <button class="wallet-btn" onclick="connectMetamask()">
+                🦊 Metamask
+            </button>
+            <button class="wallet-btn" onclick="connectPhantom()">
+                👻 Phantom
+            </button>
+            <div id="walletStatus"></div>
+        </div>
+    </header>
+    <section class="hero">
+        <h1 class="glitch-text">KRAKEN PROTOCOL</h1>
+        <p class="subtitle">Mine. Fight. Evolve. Earn.</p>
+        <div class="cyber-line"></div>
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-value" id="days">12</div>
+                <div class="countdown-label">Jours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="hours">08</div>
+                <div class="countdown-label">Heures</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="minutes">34</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="seconds">22</div>
+                <div class="countdown-label">Secondes</div>
+            </div>
+        </div>
+    </section>
+    <div class="presale-stats-bar">
+        <div class="stat-box">
+            <div class="stat-label">Levé</div>
+            <div class="stat-value">$127K</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Objectif</div>
+            <div class="stat-value">$2M</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Prix Actuel</div>
+            <div class="stat-value">$0.0025</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Participants</div>
+            <div class="stat-value" id="participants">1,247</div>
+        </div>
+    </div>
+    <div class="presale-container">
+        <div class="presale-box" id="presale">
+            <h2>⚡ Acheter KRK</h2>
+            <div class="progress-section">
+                <div class="progress-info">
+                    <span style="color: #00ffff; font-weight: bold;">$127,000</span>
+                    <span style="color: #ff00ff; font-weight: bold;">$2,000,000</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                    <div class="progress-text">6.35% VENDU</div>
+                </div>
+            </div>
+            <h3 style="color: #9fb3d9; margin: 30px 0 15px; text-align: center;">Méthode de Paiement</h3>
+            <div class="payment-methods">
+                <div class="payment-method selected" onclick="selectPayment('eth')" id="pay-eth">
+                    🔷 ETH
+                </div>
+                <div class="payment-method" onclick="selectPayment('bnb')" id="pay-bnb">
+                    🟡 BNB
+                </div>
+                <div class="payment-method" onclick="selectPayment('usdt')" id="pay-usdt">
+                    💵 USDT
+                </div>
+                <div class="payment-method" onclick="selectPayment('usdc')" id="pay-usdc">
+                    🔵 USDC
+                </div>
+                <div class="payment-method" onclick="selectPayment('sol')" id="pay-sol">
+                    ⚡ SOL
+                </div>
+                <div class="payment-method" onclick="selectPayment('card')" id="pay-card">
+                    💳 Carte
+                </div>
+            </div>
+            <input type="number" class="buy-input" placeholder="Montant en USD" id="buyAmount" value="100">
+            <div style="text-align: center; color: #9fb3d9; margin: 15px 0; font-size: 18px;">
+                Vous recevrez: <span id="tokenAmount" style="color: #00ffff; font-weight: bold; font-size: 24px;">40,000 KRK</span>
+            </div>
+            <button class="buy-button" onclick="buyTokens()">
+                <span style="position: relative; z-index: 1;">💎 ACHETER MAINTENANT</span>
+            </button>
+            <div style="margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.4); border-radius: 8px; border: 1px solid rgba(255,0,255,0.3);">
+                <small style="color: #9fb3d9;">
+                    🔐 Transaction sécurisée • Smart Contract audité • Tokens livrés instantanément
+                </small>
+            </div>
+        </div>
+        <div class="presale-box staking-box" id="staking">
+            <h2>🔥 Staking KRK</h2>
+            <p style="text-align: center; color: #9fb3d9; margin-bottom: 30px;">
+                Stakez vos tokens et gagnez des récompenses passives
+            </p>
+            <div class="staking-options">
+                <div class="staking-option selected" onclick="selectStaking(30, 15)">
+                    <div class="staking-period">30 Jours</div>
+                    <div class="staking-apy">15% APY</div>
+                </div>
+                <div class="staking-option" onclick="selectStaking(90, 35)">
+                    <div class="staking-period">90 Jours</div>
+                    <div class="staking-apy">35% APY</div>
+                </div>
+                <div class="staking-option" onclick="selectStaking(180, 75)">
+                    <div class="staking-period">180 Jours</div>
+                    <div class="staking-apy">75% APY</div>
+                </div>
+            </div>
+            <input type="number" class="buy-input" placeholder="Montant KRK à staker" id="stakeAmount" value="10000">
+            <div class="reward-display">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                    <span style="color: #9fb3d9;">Période:</span>
+                    <span style="color: #00ffff; font-weight: bold;" id="stakePeriod">30 Jours</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                    <span style="color: #9fb3d9;">APY:</span>
+                    <span style="color: #ff00ff; font-weight: bold;" id="stakeAPY">15%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span style="color: #9fb3d9;">Récompenses estimées:</span>
+                    <span style="color: #00ff00; font-weight: bold; font-size: 20px;" id="stakeReward">123.29 KRK</span>
+                </div>
+            </div>
+            <button class="buy-button" onclick="stakeTokens()" style="background: linear-gradient(135deg, #00ffff, #ff00ff);">
+                <span style="position: relative; z-index: 1;">🔒 STAKER MAINTENANT</span>
+            </button>
+            <div style="margin-top: 30px; padding: 20px; background: rgba(0,255,255,0.1); border-radius: 12px; border: 2px solid rgba(0,255,255,0.3);">
+                <h4 style="color: #00ffff; margin-bottom: 15px; text-align: center;">📊 Vos Stats de Staking</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <div style="color: #9fb3d9; font-size: 12px;">Total Staké</div>
+                        <div style="color: #fff; font-weight: bold; font-size: 18px;">0 KRK</div>
+                    </div>
+                    <div>
+                        <div style="color: #9fb3d9; font-size: 12px;">Récompenses Gagnées</div>
+                        <div style="color: #00ff00; font-weight: bold; font-size: 18px;">0 KRK</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="features" class="features">
+        <div class="feature-card">
+            <div class="feature-icon">⛏️</div>
+            <h3>Minage Mobile</h3>
+            <p>Minez des tokens KRAKEN directement depuis votre smartphone. Système de minage innovant basé sur le gameplay. Gagnez des KRK en jouant, en explorant et en combattant.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎴</div>
+            <h3>Cartes NFT Cyber</h3>
+            <p>Collectionnez des créatures bio-mécaniques uniques. 4 raretés + Ultra Rare Gold Kraken. Chaque carte a ses propres stats et capacités pour les combats PVP et PVE.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚔️</div>
+            <h3>Combat PVP/PVE</h3>
+            <p>Affrontez d'autres joueurs en arène ou explorez des donjons cyberpunk. Système de combat stratégique avec combos et évolutions. Grimpez dans le classement mondial.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌀</div>
+            <h3>Portails Adventures</h3>
+            <p>Explorez des dimensions parallèles remplies de boss légendaires. Découvrez des loots rares et des matériaux précieux. Chaque portail est une aventure unique.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💰</div>
+            <h3>Play-to-Earn</h3>
+            <p>Gagnez des tokens en jouant réellement. Système économique équilibré anti-inflation. Vendez vos NFT sur le marketplace intégré. Récompenses quotidiennes et événements.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🏙️</div>
+            <h3>Kraken City</h3>
+            <p>Explorez une mégacité cyberpunk vivante et évolutive. Zones industrielles, quartiers néon, serveurs de données. Un univers manga ultra-détaillé qui évolue avec la communauté.</p>
+        </div>
+    </section>
+    <section id="tokenomics" class="tokenomics">
+        <h2>Tokenomics</h2>
+        <p style="color: #9fb3d9; font-size: 20px; margin-bottom: 50px;">
+            Supply Total: 60,000,000 KRK
+        </p>
+        <div class="tokenomics-grid">
+            <div class="token-card">
+                <div class="token-percentage">30%</div>
+                <div class="token-label">Prévente</div>
+                <p style="color: #9fb3d9; margin-top: 10px;">18,000,000 KRK pour financer le développement</p>
+            </div>
+            <div class="token-card">
+                <div class="token-percentage">20%</div>
+                <div class="token-label">Listing CEX/DEX</div>
+                <p style="color: #9fb3d9; margin-top: 10px;">12,000,000 KRK pour liquidité et listings</p>
+            </div>
+            <div class="token-card">
+                <div class="token-percentage">20%</div>
+                <div class="token-label">Récompenses Joueurs</div>
+                <p style="color: #9fb3d9; margin-top: 10px;">12,000,000 KRK distribués via play-to-earn</p>
+            </div>
+            <div class="token-card">
+                <div class="token-percentage">20%</div>
+                <div class="token-label">Développement</div>
+                <p style="color: #9fb3d9; margin-top: 10px;">12,000,000 KRK pour développement & marketing</p>
+            </div>
+            <div class="token-card">
+                <div class="token-percentage">10%</div>
+                <div class="token-label">Team</div>
+                <p style="color: #9fb3d9; margin-top: 10px;">6,000,000 KRK vesting 24 mois pour l'équipe</p>
+            </div>
+            <div class="token-card">
+                <div class="token-percentage">✓</div>
+                <div class="token-label">Audit Sécurisé</div>
+                <p style="color: #9fb3d9; margin-top: 10px;">Smart contract audité par Certik</p>
+            </div>
+        </div>
+    </section>
+    <section class="cta-section">
+        <h2>Rejoignez la Révolution</h2>
+        <p style="color: #9fb3d9; font-size: 20px; margin-bottom: 40px;">
+            Téléchargez le jeu et commencez à miner dès maintenant
+        </p>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <button class="buy-button" style="width: auto; padding: 20px 50px;" onclick="window.open('#', '_blank')">
+                <span style="position: relative; z-index: 1;">📱 iOS App Store</span>
+            </button>
+            <button class="buy-button" style="width: auto; padding: 20px 50px; background: linear-gradient(135deg, #00ffff, #ff00ff);" onclick="window.open('#', '_blank')">
+                <span style="position: relative; z-index: 1;">🤖 Google Play</span>
+            </button>
+        </div>
+        <div style="margin-top: 60px; padding: 40px; background: rgba(0,0,0,0.4); border-radius: 20px; max-width: 800px; margin-left: auto; margin-right: auto; border: 2px solid rgba(255,0,255,0.3);">
+            <h3 style="color: #00ffff; margin-bottom: 20px;">🎮 Bêta Fermée Disponible</h3>
+            <p style="color: #9fb3d9; margin-bottom: 20px;">
+                Accès anticipé pour les premiers 1000 investisseurs !<br>
+                Minez maintenant et gagnez des bonus exclusifs.
+            </p>
+            <button class="buy-button" style="width: auto; padding: 15px 40px; font-size: 18px;" onclick="alert('🎁 Lien de téléchargement envoyé par email après achat!')">
+                <span style="position: relative; z-index: 1;">🎁 Obtenir l'Accès Bêta</span>
+            </button>
+        </div>
+    </section>
+    <footer>
+        <div class="logo" style="margin-bottom: 20px; font-size: 48px;">🐙 KRAKEN</div>
+        <p style="color: #9fb3d9; margin-bottom: 20px; font-size: 18px;">
+            The Future of Crypto Gaming is Here
+        </p>
+        <div class="social-links">
+            <a href="#" title="Twitter">𝕏</a>
+            <a href="#" title="Discord">💬</a>
+            <a href="#" title="Telegram">✈️</a>
+            <a href="https://kraken-city.fr" title="Website">🌐</a>
+            <a href="mailto:krakenproject.contact@gmail.com" title="Email">✉️</a>
+        </div>
+        <div style="margin-top: 40px; padding: 20px; background: rgba(255,0,255,0.1); border-radius: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <p style="color: #ff00ff; font-size: 14px; margin-bottom: 10px;">
+                📧 Contact: krakenproject.contact@gmail.com
+            </p>
+            <p style="color: #00ffff; font-size: 14px;">
+                🌐 Website: kraken-city.fr
+            </p>
+        </div>
+        <p style="margin-top: 30px; color: #666; font-size: 12px;">
+            © 2025 Kraken Protocol. Tous droits réservés.<br>
+            Investir comporte des risques. DYOR (Do Your Own Research)
+        </p>
+    </footer>
+    <script>
+        // Variables globales
+        let connectedWallet = null;
+        let walletAddress = null;
+        let selectedPaymentMethod = 'eth';
+        let selectedStakingPeriod = 30;
+        let selectedStakingAPY = 15;
+
+        // Fonctions définies avant utilisation
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Connexion réelle à Metamask
+        async function connectMetamask() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    walletAddress = accounts[0];
+                    connectedWallet = 'metamask';
+                    updateWalletUI();
+                    alert('✅ Metamask connecté avec succès !');
+                } catch (error) {
+                    if (error.code === 4001) {
+                        alert('❌ Connexion refusée\n\nVous avez annulé la connexion dans Metamask.');
+                    } else {
+                        alert('❌ Erreur de connexion : ' + error.message);
+                    }
+                }
+            } else {
+                const install = confirm('⚠️ Metamask non installé !\n\nVoulez-vous installer Metamask ?');
+                if (install) {
+                    window.open('https://metamask.io/download/', '_blank');
+                }
+            }
+        }
+
+        // Connexion réelle à Phantom
+        async function connectPhantom() {
+            if (typeof window.solana !== 'undefined' && window.solana.isPhantom) {
+                try {
+                    const resp = await window.solana.connect();
+                    walletAddress = resp.publicKey.toString();
+                    connectedWallet = 'phantom';
+                    updateWalletUI();
+                    alert('✅ Phantom connecté avec succès !');
+                } catch (error) {
+                    if (error.code === 4001) {
+                        alert('❌ Connexion refusée\n\nVous avez annulé la connexion dans Phantom.');
+                    } else {
+                        alert('❌ Erreur de connexion : ' + error.message);
+                    }
+                }
+            } else {
+                const install = confirm('⚠️ Phantom non installé !\n\nVoulez-vous installer Phantom ?');
+                if (install) {
+                    window.open('https://phantom.app/', '_blank');
+                }
+            }
+        }
+
+        function updateWalletUI() {
+            const walletStatus = document.getElementById('walletStatus');
+            if (walletAddress && connectedWallet) {
+                const shortAddress = walletAddress.substring(0, 6) + '...' + walletAddress.substring(walletAddress.length - 4);
+                const icon = connectedWallet === 'metamask' ? '🦊' : '👻';
+                walletStatus.innerHTML = `<div class="wallet-connected">${icon} ${shortAddress}</div>`;
+            }
+        }
+
+        function selectPayment(method) {
+            selectedPaymentMethod = method;
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            const selectedElement = document.getElementById('pay-' + method);
+            if (selectedElement) {
+                selectedElement.classList.add('selected');
+            }
+        }
+
+        function updateTokenAmount() {
+            const usdInput = document.getElementById('buyAmount');
+            const tokenDisplay = document.getElementById('tokenAmount');
+            if (usdInput && tokenDisplay) {
+                const usd = parseFloat(usdInput.value) || 0;
+                const price = 0.0025; // Prix ajusté pour 60M de supply
+                const tokens = Math.floor(usd / price);
+                tokenDisplay.textContent = tokens.toLocaleString() + ' KRK';
+            }
+        }
+
+        function buyTokens() {
+            const amountInput = document.getElementById('buyAmount');
+            const amount = parseFloat(amountInput.value);
+            if (!amount || amount < 10) {
+                alert('❌ Montant invalide\n\nLe montant minimum est de $10 USD');
+                return;
+            }
+            if (!connectedWallet || !walletAddress) {
+                alert('⚠️ Wallet non connecté\n\nVeuillez connecter votre wallet avant d\'acheter.');
+                return;
+            }
+            const price = 0.0025;
+            const tokens = Math.floor(amount / price);
+            const confirm = window.confirm(
+                '🚀 CONFIRMER L\'ACHAT\n\n' +
+                '💰 Montant: ' + amount.toFixed(2) + ' USD\n' +
+                '🪙 Tokens: ' + tokens.toLocaleString() + ' KRK\n' +
+                '💳 Méthode: ' + selectedPaymentMethod.toUpperCase() + '\n' +
+                '👛 Wallet: ' + connectedWallet + '\n\n' +
+                'Voulez-vous continuer?'
+            );
+            if (confirm) {
+                alert('⏳ Transaction en cours...\n\nVeuillez confirmer la transaction dans votre wallet.');
+                setTimeout(() => {
+                    alert('✅ ACHAT RÉUSSI!\n\n' +
+                          '🎉 ' + tokens.toLocaleString() + ' KRK ajoutés à votre wallet\n' +
+                          '📝 TxHash: 0x' + Math.random().toString(36).substring(2, 15));
+                }, 2000);
+            }
+        }
+
+        function selectStaking(period, apy) {
+            selectedStakingPeriod = period;
+            selectedStakingAPY = apy;
+            document.querySelectorAll('.staking-option').forEach(el => {
+                el.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            document.getElementById('stakePeriod').textContent = period + ' Jours';
+            document.getElementById('stakeAPY').textContent = apy + '%';
+            updateStakingReward();
+        }
+
+        function updateStakingReward() {
+            const amountInput = document.getElementById('stakeAmount');
+            const rewardDisplay = document.getElementById('stakeReward');
+            if (amountInput && rewardDisplay) {
+                const amount = parseFloat(amountInput.value) || 0;
+                const reward = (amount * selectedStakingAPY / 100) * (selectedStakingPeriod / 365);
+                rewardDisplay.textContent = reward.toFixed(2) + ' KRK';
+            }
+        }
+
+        function stakeTokens() {
+            const amountInput = document.getElementById('stakeAmount');
+            const amount = parseFloat(amountInput.value);
+            if (!amount || amount < 1000) {
+                alert('❌ Montant invalide\n\nLe montant minimum de staking est de 1,000 KRK');
+                return;
+            }
+            if (!connectedWallet || !walletAddress) {
+                alert('⚠️ Wallet non connecté\n\nVeuillez connecter votre wallet avant de staker.');
+                return;
+            }
+            const reward = (amount * selectedStakingAPY / 100) * (selectedStakingPeriod / 365);
+            const unlockDate = new Date(Date.now() + selectedStakingPeriod * 24 * 60 * 60 * 1000);
+            const confirm = window.confirm(
+                '🔒 CONFIRMER LE STAKING\n\n' +
+                '💰 Montant: ' + amount.toLocaleString() + ' KRK\n' +
+                '⏱️ Période: ' + selectedStakingPeriod + ' jours\n' +
+                '📈 APY: ' + selectedStakingAPY + '%\n' +
+                '🎁 Récompenses: ' + reward.toFixed(2) + ' KRK\n' +
+                '🔓 Déblocage: ' + unlockDate.toLocaleDateString('fr-FR') + '\n\n' +
+                'Voulez-vous continuer?'
+            );
+            if (confirm) {
+                alert('⏳ Transaction en cours...\n\nVeuillez confirmer dans votre wallet.');
+                setTimeout(() => {
+                    alert('✅ STAKING ACTIVÉ!\n\n' +
+                          '🎉 ' + amount.toLocaleString() + ' KRK stakés avec succès\n' +
+                          '📅 Déblocage: ' + unlockDate.toLocaleDateString('fr-FR') + '\n' +
+                          '💎 Récompenses: ' + reward.toFixed(2) + ' KRK');
+                }, 2000);
+            }
+        }
+
+        function updateCountdown() {
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 12);
+            endDate.setHours(endDate.getHours() + 8);
+            setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endDate - now;
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                const daysEl = document.getElementById('days');
+                const hoursEl = document.getElementById('hours');
+                const minutesEl = document.getElementById('minutes');
+                const secondsEl = document.getElementById('seconds');
+                if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
+                if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+                if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+                if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+            }, 1000);
+        }
+
+        function createParticles() {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animation = `float ${3 + Math.random() * 4}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(particle);
+            }
+        }
+
+        function updateParticipants() {
+            setInterval(() => {
+                const participantsEl = document.getElementById('participants');
+                if (participantsEl) {
+                    const current = parseInt(participantsEl.textContent.replace(',', ''));
+                    const newValue = current + Math.floor(Math.random() * 3);
+                    participantsEl.textContent = newValue.toLocaleString();
+                }
+            }, 5000);
+        }
+
+        // Initialisation
+        window.addEventListener('load', () => {
+            updateCountdown();
+            createParticles();
+            updateParticipants();
+            const buyAmountInput = document.getElementById('buyAmount');
+            if (buyAmountInput) {
+                buyAmountInput.addEventListener('input', updateTokenAmount);
+            }
+            const stakeAmountInput = document.getElementById('stakeAmount');
+            if (stakeAmountInput) {
+                stakeAmountInput.addEventListener('input', updateStakingReward);
+            }
+        });
+    </script>
+</body>
+</html>
