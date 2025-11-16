@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <style>
+    .matrix-bg {
+      fill: #000;
+    }
+    .matrix-code {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      fill: #00ff9c;
+      opacity: 0.7;
+    }
+    .kraken {
+      fill: none;
+      stroke: #00ffcc;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: url(#glow);
+    }
+    .kraken-fill {
+      fill: #000;
+      opacity: 0.7;
+    }
+    @keyframes flow {
+      from { opacity: 0.3; }
+      to { opacity: 0.9; }
+    }
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+    .matrix-code {
+      animation: flow 2s infinite alternate;
+    }
+    .kraken {
+      animation: glitch 0.5s infinite;
+    }
+  </style>
+  
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feFlood flood-color="#00ffcc" result="glow-color" />
+      <feComposite in="glow-color" in2="blur" operator="in" result="glow-blur" />
+      <feMerge>
+        <feMergeNode in="glow-blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Fond noir -->
+  <rect class="matrix-bg" width="800" height="600" />
+  
+  <!-- Code Matrix en arrière-plan -->
+  <g class="matrix-code">
+    <!-- Génération de lignes de code matrix -->
+    <text x="10" y="10">01001010 10101010 01010101 01010101</text>
+    <text x="10" y="25">10101010 01010101 01010101 10101010</text>
+    <text x="10" y="40">01010101 10101010 01010101 01010101</text>
+    <!-- Répétition pour remplir l'arrière-plan -->
+    <!-- Lignes horizontales -->
+    <script type="text/javascript">
+      <![CDATA[
+        // Cette partie serait générée dynamiquement dans un vrai SVG
+        // Simulation de code matrix pour l'exemple
+      ]]>
+    </script>
+  </g>
+  
+  <!-- Silhouette du Kraken -->
+  <g transform="translate(100, 50) scale(0.6)">
+    <path class="kraken-fill" d="M400,100 C550,100 650,200 650,350 C650,450 600,500 550,550 C500,600 450,600 400,600 C350,600 300,600 250,550 C200,500 150,450 150,350 C150,200 250,100 400,100 Z" />
+    <path class="kraken" d="M400,100 C550,100 650,200 650,350 C650,450 600,500 550,550 C500,600 450,600 400,600 C350,600 300,600 250,550 C200,500 150,450 150,350 C150,200 250,100 400,100 Z" />
+    
+    <!-- Tentacules -->
+    <path class="kraken" d="M300,400 C250,450 200,500 150,450 C100,400 120,350 150,300" />
+    <path class="kraken" d="M500,400 C550,450 600,500 650,450 C700,400 680,350 650,300" />
+    <path class="kraken" d="M350,500 C300,550 250,600 200,550 C150,500 170,450 200,400" />
+    <path class="kraken" d="M450,500 C500,550 550,600 600,550 C650,500 630,450 600,400" />
+    
+    <!-- Yeux -->
+    <circle class="kraken" cx="350" cy="250" r="30" />
+    <circle class="kraken" cx="450" cy="250" r="30" />
+    
+    <!-- Détails supplémentaires -->
+    <path class="kraken" d="M400,300 C420,320 440,330 400,350 C360,330 380,320 400,300" />
+    <path class="kraken" d="M300,200 C320,180 340,170 360,190" />
+    <path class="kraken" d="M500,200 C480,180 460,170 440,190" />
+  </g>
+  
+  <!-- Texte "KRAKEN" en style cyberpunk -->
+  <text x="400" y="550" text-anchor="middle" font-family="'Courier New', monospace" font-size="48" fill="none" stroke="#00ffcc" stroke-width="1" filter="url(#glow)">KRAKEN</text>
+</svg>
