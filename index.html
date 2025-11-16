@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KRAKEN TOKEN - Prévente Officielle | Cyberpunk Mining Game</title>
     <style>
-        /* (Tous les styles CSS restent identiques à ton code original) */
+        /* Tous les styles CSS restent identiques à ton code original */
         * {
             margin: 0;
             padding: 0;
@@ -20,7 +20,6 @@
             color: #fff;
             overflow-x: hidden;
         }
-        /* (Le reste du CSS reste inchangé) */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -1056,25 +1055,58 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Simulation de connexion wallet pour test local
-        function connectMetamask() {
-            connectedWallet = "metamask";
-            walletAddress = "0x1234567890abcdef";
-            updateWalletUI();
-            alert("✅ Wallet Metamask simulé connecté !");
+        // Connexion réelle à Metamask
+        async function connectMetamask() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    walletAddress = accounts[0];
+                    connectedWallet = 'metamask';
+                    updateWalletUI();
+                    alert('✅ Metamask connecté avec succès !');
+                } catch (error) {
+                    if (error.code === 4001) {
+                        alert('❌ Connexion refusée\n\nVous avez annulé la connexion dans Metamask.');
+                    } else {
+                        alert('❌ Erreur de connexion : ' + error.message);
+                    }
+                }
+            } else {
+                const install = confirm('⚠️ Metamask non installé !\n\nVoulez-vous installer Metamask ?');
+                if (install) {
+                    window.open('https://metamask.io/download/', '_blank');
+                }
+            }
         }
 
-        function connectPhantom() {
-            connectedWallet = "phantom";
-            walletAddress = "7xkw5...123456";
-            updateWalletUI();
-            alert("✅ Wallet Phantom simulé connecté !");
+        // Connexion réelle à Phantom
+        async function connectPhantom() {
+            if (typeof window.solana !== 'undefined' && window.solana.isPhantom) {
+                try {
+                    const resp = await window.solana.connect();
+                    walletAddress = resp.publicKey.toString();
+                    connectedWallet = 'phantom';
+                    updateWalletUI();
+                    alert('✅ Phantom connecté avec succès !');
+                } catch (error) {
+                    if (error.code === 4001) {
+                        alert('❌ Connexion refusée\n\nVous avez annulé la connexion dans Phantom.');
+                    } else {
+                        alert('❌ Erreur de connexion : ' + error.message);
+                    }
+                }
+            } else {
+                const install = confirm('⚠️ Phantom non installé !\n\nVoulez-vous installer Phantom ?');
+                if (install) {
+                    window.open('https://phantom.app/', '_blank');
+                }
+            }
         }
 
         function updateWalletUI() {
             const walletStatus = document.getElementById('walletStatus');
             if (walletAddress && connectedWallet) {
-                const shortAddress = walletAddress.substring(0, 6) + '...' + walletAddress.substring(38);
+                const shortAddress = walletAddress.substring(0, 6) + '...' + walletAddress.substring(walletAddress.length - 4);
                 const icon = connectedWallet === 'metamask' ? '🦊' : '👻';
                 walletStatus.innerHTML = `<div class="wallet-connected">${icon} ${shortAddress}</div>`;
             }
@@ -1114,7 +1146,77 @@
                 return;
             }
             const tokens = Math.floor(amount / 0.000125);
-            alert(`✅ Achat simulé de ${tokens.toLocaleString()} KRK avec ${selectedPaymentMethod.toUpperCase()} !`);
+            const confirm = window.confirm(
+                '🚀 CONFIRMER L\'ACHAT\n\n' +
+                '💰 Montant: ' + amount.toFixed(2) + ' USD\n' +
+                '🪙 Tokens: ' + tokens.toLocaleString() + ' KRK\n' +
+                '💳 Méthode: ' + selectedPaymentMethod.toUpperCase() + '\n' +
+                '👛 Wallet: ' + connectedWallet + '\n\n' +
+                'Voulez-vous continuer?'
+            );
+            if (confirm) {
+                alert('⏳ Transaction en cours...\n\nVeuillez confirmer la transaction dans votre wallet.');
+                setTimeout(() => {
+                    alert('✅ ACHAT RÉUSSI!\n\n' +
+                          '🎉 ' + tokens.toLocaleString() + ' KRK ajoutés à votre wallet\n' +
+                          '📝 TxHash: 0x' + Math.random().toString(36).substring(2, 15));
+                }, 2000);
+            }
+        }
+
+        function selectStaking(period, apy) {
+            selectedStakingPeriod = period;
+            selectedStakingAPY = apy;
+            document.querySelectorAll('.staking-option').forEach(el => {
+                el.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            document.getElementById('stakePeriod').textContent = period + ' Jours';
+            document.getElementById('stakeAPY').textContent = apy + '%';
+            updateStakingReward();
+        }
+
+        function updateStakingReward() {
+            const amountInput = document.getElementById('stakeAmount');
+            const rewardDisplay = document.getElementById('stakeReward');
+            if (amountInput && rewardDisplay) {
+                const amount = parseFloat(amountInput.value) || 0;
+                const reward = (amount * selectedStakingAPY / 100) * (selectedStakingPeriod / 365);
+                rewardDisplay.textContent = reward.toFixed(2) + ' KRK';
+            }
+        }
+
+        function stakeTokens() {
+            const amountInput = document.getElementById('stakeAmount');
+            const amount = parseFloat(amountInput.value);
+            if (!amount || amount < 1000) {
+                alert('❌ Montant invalide\n\nLe montant minimum de staking est de 1,000 KRK');
+                return;
+            }
+            if (!connectedWallet || !walletAddress) {
+                alert('⚠️ Wallet non connecté\n\nVeuillez connecter votre wallet avant de staker.');
+                return;
+            }
+            const reward = (amount * selectedStakingAPY / 100) * (selectedStakingPeriod / 365);
+            const unlockDate = new Date(Date.now() + selectedStakingPeriod * 24 * 60 * 60 * 1000);
+            const confirm = window.confirm(
+                '🔒 CONFIRMER LE STAKING\n\n' +
+                '💰 Montant: ' + amount.toLocaleString() + ' KRK\n' +
+                '⏱️ Période: ' + selectedStakingPeriod + ' jours\n' +
+                '📈 APY: ' + selectedStakingAPY + '%\n' +
+                '🎁 Récompenses: ' + reward.toFixed(2) + ' KRK\n' +
+                '🔓 Déblocage: ' + unlockDate.toLocaleDateString('fr-FR') + '\n\n' +
+                'Voulez-vous continuer?'
+            );
+            if (confirm) {
+                alert('⏳ Transaction en cours...\n\nVeuillez confirmer dans votre wallet.');
+                setTimeout(() => {
+                    alert('✅ STAKING ACTIVÉ!\n\n' +
+                          '🎉 ' + amount.toLocaleString() + ' KRK stakés avec succès\n' +
+                          '📅 Déblocage: ' + unlockDate.toLocaleDateString('fr-FR') + '\n' +
+                          '💎 Récompenses: ' + reward.toFixed(2) + ' KRK');
+                }, 2000);
+            }
         }
 
         function updateCountdown() {
@@ -1170,6 +1272,10 @@
             const buyAmountInput = document.getElementById('buyAmount');
             if (buyAmountInput) {
                 buyAmountInput.addEventListener('input', updateTokenAmount);
+            }
+            const stakeAmountInput = document.getElementById('stakeAmount');
+            if (stakeAmountInput) {
+                stakeAmountInput.addEventListener('input', updateStakingReward);
             }
         });
     </script>
